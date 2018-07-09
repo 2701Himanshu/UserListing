@@ -1,0 +1,75 @@
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Users</div>
+
+  <div class="userListTable">
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Phone</th>
+          <th>Country</th>
+        </tr>
+        <tr ng-repeat="item in list" ng-click="getDetail(item._id)">
+          <td>{{item.name}}</td>
+          <td>{{item.email}}</td>
+          <td>{{item.age}}</td>
+          <td>{{item.gender}}</td>
+          <td>{{item.phone}}</td>
+          <td>{{item.country}}</td>
+        </tr>
+      </tbody>
+
+    </table>  
+  </div>
+
+  <a style="margin: 10px;color:#fff;" class="btn btn-primary" data-toggle="modal" data-target="#addUser" role="button">Add New User</a>
+  
+</div>
+
+<div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">User Name</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+      <div class="form-group">
+        
+        <label for="username">User Name</label>
+        <input type="text" class="form-control" ng-model="user.name" id="username" aria-describedby="emailHelp" placeholder="Full Name">
+
+        <label for="email">Email</label>
+        <input type="email" class="form-control" ng-model="user.email" id="email" placeholder="Email">
+
+        <label for="password">Password</label>
+        <input type="password" class="form-control" ng-model="user.password" id="password" placeholder="Password">
+
+        <label for="age">Age</label>
+        <input type="number" class="form-control" ng-model="user.age" id="age" placeholder="Age">
+
+        <label for="gender">Gender</label>
+        <input type="text" class="form-control" ng-model="user.gender" id="gender" placeholder="Gender">
+
+        <label for="phone">Phone</label>
+        <input type="text" class="form-control" ng-model="user.phone" id="phone" placeholder="Phone">
+
+        <label for="country">Country</label>
+        <input type="text" class="form-control" ng-model="user.country" id="country" placeholder="Country">
+      </div>
+    </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="addNewUser()">Add User</button>
+      </div>
+    </div>
+  </div>
+</div>

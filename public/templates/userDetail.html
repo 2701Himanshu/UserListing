@@ -1,0 +1,44 @@
+<div class="panel panel-default">
+	<div class="panel-heading">User Details</div>
+
+	<ul class="list-group">
+	  <li class="list-group-item">
+	    <span class="badge">Name</span>
+	    <span ng-hide="editUserBtn" class="userDetail">{{userDetail.name}}</span>
+	    <input ng-show="editUserBtn" type="text" class="form-control" ng-model="userDetail.name" placeholder="name">
+	  </li>
+	  <li class="list-group-item">
+	    <span class="badge">Email</span>
+	    <span ng-hide="editUserBtn" class="userDetail">{{userDetail.email}}</span>
+	    <input ng-show="editUserBtn" type="email" class="form-control" ng-model="userDetail.email" placeholder="Email">
+	  </li>
+	  <li class="list-group-item">
+	    <span class="badge">Age</span>
+	    <span ng-hide="editUserBtn" class="userDetail">{{userDetail.age}}</span>
+	    <input ng-show="editUserBtn" type="number" class="form-control" ng-model="userDetail.age" placeholder="Age">
+	  </li>
+	  <li class="list-group-item">
+	    <span class="badge">Gender</span>
+	    <span ng-hide="editUserBtn" class="userDetail">{{userDetail.gender}}</span>
+	    <input ng-show="editUserBtn" type="text" class="form-control" ng-model="userDetail.gender" placeholder="Gender">
+	  </li>
+	  <li class="list-group-item">
+	    <span class="badge">Phone</span>
+	    <span ng-hide="editUserBtn" class="userDetail">{{userDetail.phone}}</span>
+	    <input ng-show="editUserBtn" type="text" class="form-control" ng-model="userDetail.phone" placeholder="Phone">
+	  </li>
+	  <li class="list-group-item">
+	    <span class="badge">Country</span>
+	    <span ng-hide="editUserBtn" class="userDetail">{{userDetail.country}}</span>
+	    <input ng-show="editUserBtn" type="text" class="form-control" ng-model="userDetail.country" placeholder="Country">
+	  </li>
+	</ul>
+	<div class="row" style="margin: 10px;">
+	    <div class="col-sm-6">
+	        <button id="editBtn" ng-click="editUserDetail(userDetail._id)" type="button" class="btn btn-block btn-primary">Edit</button>
+	    </div>
+	    <div class="col-sm-6">
+	        <button ng-click="deleteUser(userDetail._id)" type="button" class="btn btn-block btn-danger">Delete</button>
+	    </div>
+	</div> 
+</div>
