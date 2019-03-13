@@ -6,12 +6,12 @@
     <table class="table">
       <tbody>
         <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Age</th>
-          <th>Gender</th>
-          <th>Phone</th>
-          <th>Country</th>
+          <th>Date</th>
+          <th>01:00 PM</th>
+          <th>02:00 PM</th>
+          <th>03:00 PM</th>
+          <th>04:00 PM</th>
+          <th>05:00 PM</th>
         </tr>
         <tr ng-repeat="item in list" ng-click="getDetail(item._id)">
           <td>{{item.name}}</td>
@@ -34,35 +34,59 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">User Name</h5>
+        <h5 class="modal-title" id="exampleModalLabel">{{title | date}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="margin:20px">
         <form>
       <div class="form-group">
         
-        <label for="username">User Name</label>
-        <input type="text" class="form-control" ng-model="user.name" id="username" aria-describedby="emailHelp" placeholder="Full Name">
+        <div class="row">
+          <div class="col-sm-4" style="padding: 10px;">
+            <label for="one">01:00 PM</label>
+          </div>
+          <div class="col-sm-8">
+            <input type="tel" maxlength="2" class="form-control" ng-model="num.one" id="username" aria-describedby="emailHelp" placeholder="Enter Lucky Number...">
+          </div>
+        </div>
 
-        <label for="email">Email</label>
-        <input type="email" class="form-control" ng-model="user.email" id="email" placeholder="Email">
+        <div class="row">
+          <div class="col-sm-4" style="padding: 10px;">
+            <label for="two">02:00 PM</label>
+          </div>
+          <div class="col-sm-8">
+            <input type="tel" maxlength="2" class="form-control" ng-model="num.two" id="email" placeholder="Enter Lucky Number...">
+          </div>
+        </div>
 
-        <label for="password">Password</label>
-        <input type="password" class="form-control" ng-model="user.password" id="password" placeholder="Password">
+        <div class="row">
+          <div class="col-sm-4" style="padding: 10px;">
+            <label for="three">03:00 PM</label>
+          </div>
+          <div class="col-sm-8">
+            <input type="tel" maxlength="2" class="form-control" ng-model="num.three" id="password" placeholder="Enter Lucky Number...">
+          </div>
+        </div>
 
-        <label for="age">Age</label>
-        <input type="number" class="form-control" ng-model="user.age" id="age" placeholder="Age">
+        <div class="row">
+          <div class="col-sm-4" style="padding: 10px;">
+            <label for="fore">04:00 PM</label>
+          </div>
+          <div class="col-sm-8">
+            <input type="tel" maxlength="2" class="form-control" ng-model="num.fore" id="fore" placeholder="Enter Lucky Number...">
+          </div>
+        </div>
 
-        <label for="gender">Gender</label>
-        <input type="text" class="form-control" ng-model="user.gender" id="gender" placeholder="Gender">
-
-        <label for="phone">Phone</label>
-        <input type="text" class="form-control" ng-model="user.phone" id="phone" placeholder="Phone">
-
-        <label for="country">Country</label>
-        <input type="text" class="form-control" ng-model="user.country" id="country" placeholder="Country">
+        <div class="row">
+          <div class="col-sm-4" style="padding: 10px;">
+            <label for="five">05:00 PM</label>
+          </div>
+          <div class="col-sm-8">
+            <input type="tel" maxlength="2" class="form-control" ng-model="num.five" id="five" placeholder="Enter Lucky Number...">
+          </div>
+        </div>        
       </div>
     </form>
       </div>

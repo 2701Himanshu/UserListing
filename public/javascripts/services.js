@@ -53,4 +53,17 @@ angular.module('starter.service', [])
 			});
 		}
 	}
+})
+
+.service('dateService', function($http){
+	this.submitDate = function(data){
+		return $http({
+			url: '/submitDate',
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			data: data
+		});
+	}
 });

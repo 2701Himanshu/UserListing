@@ -1,30 +1,55 @@
 angular.module('starter.controller', [])
 
-.controller('homeCtrl', function($scope, $rootScope, userServices){
-	$scope.user = {};
+.controller('homeCtrl', function($scope, $rootScope, dateService){
+	$scope.num = {};
 	$scope.addNewUser = function(){
-		console.log($scope.user);
-		userServices.addNewUser($scope.user).then(
-			function(data){
-				if(data.data.status == "102") {
-					alert(data.data.msg);
-					$('#addUser').modal('hide');
-					return;
-				}
-				if(data.data.result.n != 0) {
-					alert('User successfully added into DB.');
-					$('#addUser').modal('hide');
-					setTimeout(function(){
-						$rootScope.$broadcast('refreshUserList', {});
-					},500);
-				}
+		var numEntry = [];
+		for(let val of Object.entries($scope.num)){
+			numEntry.push({time: val[0], number: val[1]});
+		}
+		debugger
+		dateService.submitDate({
+			date: $scope.getFormattedDate($scope.title),
+			numEntry: numEntry
+		}).then(
+			data=> {
+				console.log(data);
+				debugger;
 			},
-			function(err){
-				console.log(err);
+			error=> {
+				console.log(error);
 				debugger;
 			}
 		);
+		// userServices.addNewUser($scope.user).then(
+		// 	function(data){
+		// 		if(data.data.status == "102") {
+		// 			alert(data.data.msg);
+		// 			$('#addUser').modal('hide');
+		// 			return;
+		// 		}
+		// 		if(data.data.result.n != 0) {
+		// 			alert('User successfully added into DB.');
+		// 			$('#addUser').modal('hide');
+		// 			setTimeout(function(){
+		// 				$rootScope.$broadcast('refreshUserList', {});
+		// 			},500);
+		// 		}
+		// 	},
+		// 	function(err){
+		// 		console.log(err);
+		// 		debugger;
+		// 	}
+		// );
 	}
+
+	let date = new Date();
+	$scope.title = date;
+
+	$scope.getFormattedDate = function(data){
+		let formattedDate = new Date(data);
+		return formattedDate.getFullYear()+'-'+(formattedDate.getMonth()+1) +"-"+ formattedDate.getDate();
+	};
 })
 
 .controller('userListCtrl', function($scope, $rootScope, userServices){

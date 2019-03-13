@@ -8,7 +8,7 @@ var ObjectId = require('mongodb').ObjectID;
  */
 router.get('/', function(req, res, next) {
 	var DB = mongoDB.getDb();
-	DB.collection('users').find().toArray(function(err, result){
+	DB.collection('Date').find().toArray(function(err, result){
 	  	if(err) res.send(err);
 	  	else res.send(result);
 	});
