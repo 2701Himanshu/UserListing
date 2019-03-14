@@ -25,6 +25,7 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   overflow: hidden;
+  background: #e6e6e6;
 }
 
 a {
@@ -52,9 +53,10 @@ a {
   overflow:auto;
   border-bottom: 5px solid #808080;
   border-radius: 2%;
+  background: #fff;
 }
 .list-group-item input {
-    width: 75%;
+    width: 30%;
     float: right;
     height: 30px;
 }

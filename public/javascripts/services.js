@@ -65,5 +65,48 @@ angular.module('starter.service', [])
 			},
 			data: data
 		});
+	};
+
+	this.getSavedData = function(){
+		return $http({
+			url: '/getData',
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+	};
+
+	this.getDayDetails = function(data){
+		return $http({
+			url: '/getCurrentDayNumbers',
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			data: data
+		});
+	};
+
+	this.removeEntry = function(data){
+		return $http({
+			url: '/removeEntry',
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			data: data
+		});
+	};
+
+	this.updateEntry = function(data){
+		return $http({
+			url: '/updateEntry',
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			data: data
+		});
 	}
 });

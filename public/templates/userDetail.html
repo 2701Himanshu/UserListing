@@ -1,44 +1,39 @@
 <div class="panel panel-default">
-	<div class="panel-heading">User Details</div>
+	<div class="panel-heading">{{dayDetails.date | date:'dd MMM yyyy'}}</div>
 
 	<ul class="list-group">
 	  <li class="list-group-item">
-	    <span class="badge">Name</span>
-	    <span ng-hide="editUserBtn" class="userDetail">{{userDetail.name}}</span>
-	    <input ng-show="editUserBtn" type="text" class="form-control" ng-model="userDetail.name" placeholder="name">
+	    <span class="badge">01:00 PM</span>
+	    <span ng-hide="editUserBtn" class="userDetail">{{dayDetails.numEntry[0].number || '_'}}</span>
+	    <input ng-show="editUserBtn" type="text" class="form-control" ng-model="dayDetails.numEntry[0].number" placeholder="Number">
 	  </li>
 	  <li class="list-group-item">
-	    <span class="badge">Email</span>
-	    <span ng-hide="editUserBtn" class="userDetail">{{userDetail.email}}</span>
-	    <input ng-show="editUserBtn" type="email" class="form-control" ng-model="userDetail.email" placeholder="Email">
+	    <span class="badge">02:00 PM</span>
+	    <span ng-hide="editUserBtn" class="userDetail">{{dayDetails.numEntry[1].number || '_'}}</span>
+	    <input ng-show="editUserBtn" type="text" class="form-control" ng-model="dayDetails.numEntry[1].number" placeholder="Number">
 	  </li>
 	  <li class="list-group-item">
-	    <span class="badge">Age</span>
-	    <span ng-hide="editUserBtn" class="userDetail">{{userDetail.age}}</span>
-	    <input ng-show="editUserBtn" type="number" class="form-control" ng-model="userDetail.age" placeholder="Age">
+	    <span class="badge">03:00 PM</span>
+	    <span ng-hide="editUserBtn" class="userDetail">{{dayDetails.numEntry[2].number || '_'}}</span>
+	    <input ng-show="editUserBtn" type="text" class="form-control" ng-model="dayDetails.numEntry[2].number" placeholder="Number">
 	  </li>
 	  <li class="list-group-item">
-	    <span class="badge">Gender</span>
-	    <span ng-hide="editUserBtn" class="userDetail">{{userDetail.gender}}</span>
-	    <input ng-show="editUserBtn" type="text" class="form-control" ng-model="userDetail.gender" placeholder="Gender">
+	    <span class="badge">04:00 PM</span>
+	    <span ng-hide="editUserBtn" class="userDetail">{{dayDetails.numEntry[3].number || '_'}}</span>
+	    <input ng-show="editUserBtn" type="text" class="form-control" ng-model="dayDetails.numEntry[3].number" placeholder="Number">
 	  </li>
 	  <li class="list-group-item">
-	    <span class="badge">Phone</span>
-	    <span ng-hide="editUserBtn" class="userDetail">{{userDetail.phone}}</span>
-	    <input ng-show="editUserBtn" type="text" class="form-control" ng-model="userDetail.phone" placeholder="Phone">
-	  </li>
-	  <li class="list-group-item">
-	    <span class="badge">Country</span>
-	    <span ng-hide="editUserBtn" class="userDetail">{{userDetail.country}}</span>
-	    <input ng-show="editUserBtn" type="text" class="form-control" ng-model="userDetail.country" placeholder="Country">
+	    <span class="badge">05:00 PM</span>
+	    <span ng-hide="editUserBtn" class="userDetail">{{dayDetails.numEntry[4].number || '_'}}</span>
+	    <input ng-show="editUserBtn" type="text" class="form-control" ng-model="dayDetails.numEntry[4].number" placeholder="Number">
 	  </li>
 	</ul>
 	<div class="row" style="margin: 10px;">
 	    <div class="col-sm-6">
-	        <button id="editBtn" ng-click="editUserDetail(userDetail._id)" type="button" class="btn btn-block btn-primary">Edit</button>
+	        <button id="editBtn" ng-click="editDetail(dayDetails)" type="button" class="btn btn-block btn-primary">Edit</button>
 	    </div>
 	    <div class="col-sm-6">
-	        <button ng-click="deleteUser(userDetail._id)" type="button" class="btn btn-block btn-danger">Delete</button>
+	        <button ng-click="deleteEntry(dayDetails._id)" type="button" class="btn btn-block btn-danger">Delete</button>
 	    </div>
 	</div> 
 </div>

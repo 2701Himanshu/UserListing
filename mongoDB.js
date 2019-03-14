@@ -12,7 +12,6 @@ var _db = {};
 module.exports = {
 	connectToServer: function( callback ) {
 		MongoClient.connect(url , { useNewUrlParser: true, authSource:'admin', replicaSet: 'Cluster0-shard-0' }, function(err, db){
-			console.log(err);
 	      _db = db.db(dbName);
 	      return callback( err );
 	    });

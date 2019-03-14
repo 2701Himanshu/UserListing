@@ -4,60 +4,77 @@ angular.module('starter.controller', [])
 	$scope.num = {};
 	$scope.addNewUser = function(){
 		var numEntry = [];
-		for(let val of Object.entries($scope.num)){
-			numEntry.push({time: val[0], number: val[1]});
+		var insertData = 0;
+		var tempArray = Object.entries($scope.num);
+		for(let i=0; i<5; i++){
+			let val = tempArray[i];
+			if(val != undefined){
+				numEntry.push({time: val[0], number: val[1]});
+			} else {
+				numEntry.push({});
+			}
 		}
-		debugger
-		dateService.submitDate({
-			date: $scope.getFormattedDate($scope.title),
-			numEntry: numEntry
-		}).then(
-			data=> {
-				console.log(data);
-				debugger;
+
+		dateService.getSavedData().then(
+			function(data){
+				data.data.map(item=>{
+					if(item.date == $scope.getFormattedDate($scope.title)){
+						insertData = 1;
+						return;
+					}
+				});
+				if(insertData == 0){
+					dateService.submitDate({
+						date: $scope.getFormattedDate($scope.title),
+						numEntry: numEntry
+					}).then(
+						data=> {
+							if(data.data.status == 401){
+								alert(data.data.message);
+								return;
+							}
+							if(data.data.result.ok == 1){
+								alert('Data Successfully Inserted');
+								$rootScope.$broadcast('refreshUserList', {});
+								$('#addUser').modal('hide');
+							}
+						},
+						error=> {
+							console.log(error);
+							debugger;
+						}
+					);
+				} else {
+					alert('Numbers Already Inserted Today.');
+					$('#addUser').modal('hide');
+				}
 			},
-			error=> {
-				console.log(error);
+			function(err){
+				console.log(err);
 				debugger;
 			}
 		);
-		// userServices.addNewUser($scope.user).then(
-		// 	function(data){
-		// 		if(data.data.status == "102") {
-		// 			alert(data.data.msg);
-		// 			$('#addUser').modal('hide');
-		// 			return;
-		// 		}
-		// 		if(data.data.result.n != 0) {
-		// 			alert('User successfully added into DB.');
-		// 			$('#addUser').modal('hide');
-		// 			setTimeout(function(){
-		// 				$rootScope.$broadcast('refreshUserList', {});
-		// 			},500);
-		// 		}
-		// 	},
-		// 	function(err){
-		// 		console.log(err);
-		// 		debugger;
-		// 	}
-		// );
 	}
 
 	let date = new Date();
 	$scope.title = date;
 
 	$scope.getFormattedDate = function(data){
-		let formattedDate = new Date(data);
-		return formattedDate.getFullYear()+'-'+(formattedDate.getMonth()+1) +"-"+ formattedDate.getDate();
+		let date = new Date(data);
+	    let year = date.getFullYear();
+	    let month = date.getMonth() < 9 ? 0+''+date.getMonth() : date.getMonth();
+	    let day = date.getDate() < 9 ? 0+''+date.getDate() : date.getDate();
+	    return year+'-'+month+'-'+day;
 	};
 })
 
-.controller('userListCtrl', function($scope, $rootScope, userServices){
+.controller('userListCtrl', function($scope, $rootScope, userServices, dateService){
 	
 	$scope.getUserList = function(){
-		userServices.getUserList().then(
+		dateService.getSavedData().then(
 			function(data){
 				$scope.list = data.data;
+				$scope.getDetail(data.data[0]._id);
 			},
 			function(err){
 				console.log(err);
@@ -72,20 +89,20 @@ angular.module('starter.controller', [])
 	};
 
 	$scope.$on('refreshUserList', function(event, args) {
-		debugger;
 		$scope.getUserList();
 	});
 })
 
-.controller('userDetailCtrl', function($scope, $rootScope, userServices){
+.controller('userDetailCtrl', function($scope, $rootScope, dateService){
+	$scope.dayDetails;
 	$scope.$on('fetchDetail', function(event, args) {
 		var dataToSend = {
 			id: args
 		};
 		$scope.enableUserEditing(false);
-		userServices.getUserDetail(dataToSend).then(
+		dateService.getDayDetails(dataToSend).then(
 			function(data){
-				$scope.userDetail = data.data[0]
+				$scope.dayDetails = data.data[0];
 			},
 			function(err){
 				console.log(err);
@@ -94,13 +111,13 @@ angular.module('starter.controller', [])
 		);
 	});
 
-	$scope.editUserDetail = function(id){
-		if(id === undefined){
+	$scope.editDetail = function(details){
+		if(details._id === undefined){
 			alert("Please select a user from list of the users.");
 			return;
 		};		
 		if(document.getElementById('editBtn').textContent == "Save"){
-			userServices.updateUser($scope.userDetail).then(
+			dateService.updateEntry(details).then(
 				function(data){
 					if(data.data.nModified != 0) {
 						$scope.enableUserEditing(false);
@@ -117,15 +134,15 @@ angular.module('starter.controller', [])
 			$scope.enableUserEditing(true);
 		}
 	};
-	$scope.deleteUser = function(id){
+	$scope.deleteEntry = function(id){
 		if(id === undefined) alert("Please select a user from list of the users.");
 		var dataToSend = {
 			id: id
 		}
-		userServices.removeAUser(dataToSend).then(
+		dateService.removeEntry(dataToSend).then(
 			function(data){
 				if(data.data.n != 0){
-					alert("User deleted successfully.");
+					alert("Entry Deleted Successfully.");
 					$rootScope.$broadcast('refreshUserList', {});
 				}
 			},
@@ -143,5 +160,15 @@ angular.module('starter.controller', [])
 			$scope.editUserBtn = status;
 			document.getElementById('editBtn').textContent = "Edit";
 		}
+	}
+})
+
+.filter('CustomDate', function(){
+	return function(input) {
+	    let date = new Date(input);
+	    let year = date.getFullYear();
+	    let month = date.getMonth() < 9 ? 0+''+date.getMonth() : date.getMonth();
+	    let day = date.getDate() < 9 ? 0+''+date.getDate() : date.getDate();
+	    return year+'-'+month+'-'+day;
 	}
 });

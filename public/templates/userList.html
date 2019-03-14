@@ -7,19 +7,15 @@
       <tbody>
         <tr>
           <th>Date</th>
-          <th>01:00 PM</th>
-          <th>02:00 PM</th>
-          <th>03:00 PM</th>
-          <th>04:00 PM</th>
-          <th>05:00 PM</th>
+          <th style="text-align: center;">01:00 PM</th>
+          <th style="text-align: center;">02:00 PM</th>
+          <th style="text-align: center;">03:00 PM</th>
+          <th style="text-align: center;">04:00 PM</th>
+          <th style="text-align: center;">05:00 PM</th>
         </tr>
         <tr ng-repeat="item in list" ng-click="getDetail(item._id)">
-          <td>{{item.name}}</td>
-          <td>{{item.email}}</td>
-          <td>{{item.age}}</td>
-          <td>{{item.gender}}</td>
-          <td>{{item.phone}}</td>
-          <td>{{item.country}}</td>
+          <td>{{item.date | date:'dd MMM yyyy'}}</td>
+          <td ng-repeat="num in item.numEntry" style="text-align: center;">{{num.number || '_'}}</td>
         </tr>
       </tbody>
 
