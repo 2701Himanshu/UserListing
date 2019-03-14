@@ -1,5 +1,21 @@
 angular.module('starter.controller', [])
 
+.controller('loginCtrl', function($scope, $state, dateService){
+	$scope.user = {};
+	$scope.login = function(){
+		dateService.login($scope.user).then(
+			data=> {
+				window.localStorage.setItem('user', data.data);
+				$state.go('home');
+			},
+			error=> {
+				console.log(error);
+				debugger;
+			}
+		);
+	};	
+})
+
 .controller('homeCtrl', function($scope, $rootScope, dateService){
 	$scope.num = {};
 	$scope.addNewUser = function(){

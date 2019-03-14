@@ -26,6 +26,11 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   overflow: hidden;
   background: #e6e6e6;
+
+  background-image: url("../images/lg_bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #cccccc;
 }
 
 a {
@@ -59,4 +64,14 @@ a {
     width: 30%;
     float: right;
     height: 30px;
+}
+.loginDiv{
+    width: 30%;
+    margin: 0 auto;
+    position: absolute;
+    top: 35%;
+    left: 35%;
+}
+.loginDiv input, .loginDiv button{
+    margin: 10px;
 }

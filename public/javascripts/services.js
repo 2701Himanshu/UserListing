@@ -108,5 +108,16 @@ angular.module('starter.service', [])
 			},
 			data: data
 		});
+	};
+
+	this.login = function(data){
+		return $http({
+			url: '/login',
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			data: data
+		});
 	}
 });

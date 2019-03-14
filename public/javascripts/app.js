@@ -22,5 +22,11 @@ angular.module('starter', ['ui.router', 'starter.controller', 'starter.service']
       }
   })
 
-  $urlRouterProvider.otherwise('/home');
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'loginCtrl'
+  })
+
+  $urlRouterProvider.otherwise('/login');
 });

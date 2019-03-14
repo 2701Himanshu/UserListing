@@ -71,5 +71,12 @@ router.post('/updateEntry', function(req, res, next){
 	});
 });
 
+router.post('/login', function(req, res, next){
+	var DB = mongoDB.getDb();
+	DB.collection('Users').find(req.body).toArray(function(err, result){
+		if(err) res.send(err);
+		res.json(result[0]._id);
+	});
+});
 
 module.exports = router;
