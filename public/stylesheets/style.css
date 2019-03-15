@@ -36,7 +36,15 @@ body {
 a {
   color: #00B7FF;
 }
-
+.logout_div {
+    width: 40px;
+    height: auto;
+    background: #3acb7b;
+    border-radius: 50%;
+    position: fixed;
+    top: 8%;
+    right: 4%;
+}
 
 .panel-heading{
 	background: #808080;

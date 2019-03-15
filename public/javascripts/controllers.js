@@ -16,8 +16,14 @@ angular.module('starter.controller', [])
 	};	
 })
 
-.controller('homeCtrl', function($scope, $rootScope, dateService){
+.controller('homeCtrl', function($scope, $state, $rootScope, dateService){
 	$scope.num = {};
+
+	$scope.logout = function(){
+		window.localStorage.clear();
+		$state.go('login');
+	};
+
 	$scope.addNewUser = function(){
 		var numEntry = [];
 		var insertData = 0;
