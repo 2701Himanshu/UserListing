@@ -28,5 +28,10 @@ angular.module('starter', ['ui.router', 'starter.controller', 'starter.service']
     controller: 'loginCtrl'
   })
 
-  $urlRouterProvider.otherwise('/login');
+  let user = window.localStorage.getItem('user');
+  if(user != null){
+    $urlRouterProvider.otherwise('/home');
+  } else {
+    $urlRouterProvider.otherwise('/login');
+  }
 });

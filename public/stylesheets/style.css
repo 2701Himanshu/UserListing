@@ -57,7 +57,6 @@ a {
   height:400px; 
   overflow:auto;
   border-bottom: 5px solid #808080;
-  border-radius: 2%;
   background: #fff;
 }
 .list-group-item input {
@@ -74,4 +73,7 @@ a {
 }
 .loginDiv input, .loginDiv button{
     margin: 10px;
+}
+.border_zero{
+    border-radius: 0 !important;
 }
